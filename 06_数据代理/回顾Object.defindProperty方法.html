@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>回顾Object.defindProperty方法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+
+<!--
+    总结：
+-->
+
+    <div id="root">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止vue在启动是生成生产提示
+        let number = 18;
+     let person = {
+         name:"张三",
+         sex:"男"
+     }
+
+     let person2 = {
+         name:"张三",
+         sex:"男",
+         age:18
+     }
+
+     //第一个参数是给哪个对象添加属性
+     //第二个参数是添加的属性叫什么名字
+     //第三个属性是配置项
+     //这样添加的属性是不可以被枚举的（遍历）,除非将enumerable属性设置为true
+     Object.defineProperty(person,'age',{
+        //  value: '18',
+        //  enumerable:true,//控制属性是否可以被枚举（遍历），默认值是false
+        //  writable:true,//控制属性是否可以被修改，默认值是false
+        //  configurable:true //控制属性是否可以被删除，默认值是false
+
+        //当有人读取person的age属性时，get函数(getter)就会被调用，且返回值就是age的值
+        get(){
+            console.log('有人读取了age属性')
+            return number;
+        },
+        //当有人修改person的age属性时，set函数(setter)就会被调用，且会受到修改的值
+        set(value){
+            console.log('有人修改了age属性，且值为',value)
+            number = value
+        }
+     })
+
+     console.log(Object.keys(person))
+     console.log(Object.keys(person2))
+
+     console.log(person)
+    </script>
+</body>
+
+</html>
