@@ -58,6 +58,8 @@
         <!-- stop：阻止事件冒泡(常用) -->
         <div class="demo1" @click="showInfo">
             <button @click.stop="showInfo">点我提示信息</button>
+            
+            <!-- <a href="https://lol.qq.com/act/a20210709sentinel/main.html" @click.stop.prevent="showInfo">点我提示信息</a> -->
         </div>
 
         <!-- 事件只触发一次(常用) -->
